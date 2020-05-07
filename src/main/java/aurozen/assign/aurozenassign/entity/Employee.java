@@ -14,7 +14,7 @@ public class Employee {
 
     private String empname;
 
-    private Long empcontact;
+    private String empcontact;
 
     private String empemail;
 
@@ -39,11 +39,11 @@ public class Employee {
         this.empname = empname;
     }
 
-    public Long getEmpcontact() {
+    public String getEmpcontact() {
         return empcontact;
     }
 
-    public void setEmpcontact(Long empcontact) {
+    public void setEmpcontact(String empcontact) {
         this.empcontact = empcontact;
     }
 
