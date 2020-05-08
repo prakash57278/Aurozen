@@ -9,21 +9,21 @@ import javax.persistence.*;
 public class Skillset {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String skillid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int skillid;
 
     private String skillname;
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "empid", nullable = false)
+    @JoinColumn(name = "empId", nullable = false,updatable = false, insertable = true)
     private Employee employee;
 
-    public String getSkillid() {
+    public int getSkillid() {
         return skillid;
     }
 
-    public void setSkillid(String skillid) {
+    public void setSkillid(int skillid) {
         this.skillid = skillid;
     }
 
@@ -48,7 +48,7 @@ public class Skillset {
         return "Skillset{" +
                 "skillid='" + skillid + '\'' +
                 ", skillname='" + skillname + '\'' +
-//                ", employee=" + employee +
+                ", employee=" + employee +
                 '}';
     }
 }

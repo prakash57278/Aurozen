@@ -1,27 +1,21 @@
 package aurozen.assign.aurozenassign.entity;
 
+import lombok.ToString;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@ToString
 @Entity
 public class Employee {
-
-
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int empid;
-
     private String empname;
-
     private String empcontact;
-
     private String empemail;
-
     private String empphoto;
-
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-    private List<Skillset> skillset = new ArrayList<>();
+    private List<Skillset> skillset;
 
     public int getEmpid() {
         return empid;
@@ -71,15 +65,17 @@ public class Employee {
         this.skillset = skillset;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "empid=" + empid +
-                ", empname='" + empname + '\'' +
-                ", empcontact='" + empcontact + '\'' +
-                ", empemail='" + empemail + '\'' +
-                ", emphoto='" + empphoto + '\'' +
-                ", skillset=" + skillset +
-                '}';
+
+    public void addSkill(Skillset skillset){
+        this.skillset.add(skillset);
+        skillset.setEmployee(this);
+    }
+
+    public Employee updateSkillsetEmpId(Employee employee){
+        List<Skillset> sks = employee.getSkillset();
+        for(Skillset ss : sks){
+            ss.setEmployee(employee);
+        }
+        return employee;
     }
 }
