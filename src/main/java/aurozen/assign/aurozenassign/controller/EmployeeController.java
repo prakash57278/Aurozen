@@ -6,7 +6,9 @@ import aurozen.assign.aurozenassign.model.AuthenticationResponse;
 import aurozen.assign.aurozenassign.repositry.EmployeeRepositry;
 import aurozen.assign.aurozenassign.service.MyUserDetailsService;
 import aurozen.assign.aurozenassign.util.JwtUtil;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -18,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+//@Api(tags = "")
 //@RequestMapping("/api")
 public class EmployeeController {
 
@@ -33,33 +36,22 @@ public class EmployeeController {
     @Autowired
     EmployeeRepositry empRepo;
 
-    @PostMapping(value = "/signup",produces = {"application/json"})
+    @PostMapping(value = "/signup", produces = {"application/json"})
     public Employee addEmployee(@RequestBody Employee employee) {
         empRepo.save(employee);
         return employee;
     }
 
     @PutMapping(path = "/employee")
+    @ResponseBody
     public Employee updateEmployee(@RequestBody Employee employee) {
-
-     employee=empRepo.save(employee);
-//        empRepo.save(employee.updateSkillsetEmpId(employee));
-        return employee;
+        return empRepo.save(employee);
     }
 
-    @RequestMapping(value = "/employee", method = RequestMethod.GET)
+    @GetMapping(value = "/employee/{empid}", produces = {"application/json"})
     @ResponseBody
-    public List<Employee> getEmp() {
-
-        return empRepo.findAll();
-
-    }
-
-    @RequestMapping(value = "/employee/{empid}",produces = {"application/json"})
-    @ResponseBody
-    public Optional<Employee> getEmpById(@PathVariable("empid") int empid) {
-
-        return empRepo.findById(empid);
+    public ResponseEntity<?> getEmpById(@PathVariable("empid") int empid) {
+        return new ResponseEntity<>(empRepo.findById(empid), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)

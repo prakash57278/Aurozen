@@ -16,7 +16,7 @@ public class Skillset {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "empId", nullable = false,updatable = false, insertable = true)
+    @JoinColumn(name = "empid", nullable = false,updatable = false, insertable = true)
     private Employee employee;
 
     public int getSkillid() {
