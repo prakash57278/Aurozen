@@ -42,7 +42,7 @@ public class EmployeeController {
         return employee;
     }
 
-    @PutMapping(path = "/employee")
+    @PutMapping(value = "/employee",produces = {"application/json"})
     @ResponseBody
     public Employee updateEmployee(@RequestBody Employee employee) {
         return empRepo.save(employee);

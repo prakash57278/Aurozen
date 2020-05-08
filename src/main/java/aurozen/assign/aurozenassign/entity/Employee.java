@@ -10,10 +10,12 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int empid;
+
     private String empname;
     private String empcontact;
     private String empemail;
     private String empphoto;
+
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<Skillset> skillset;
 
@@ -64,19 +66,5 @@ public class Employee {
     public void setSkillset(List<Skillset> skillset) {
         this.skillset = skillset;
         skillset.forEach(s -> s.setEmployee(this));
-    }
-
-
-    public void addSkill(Skillset skillset){
-        this.skillset.add(skillset);
-        skillset.setEmployee(this);
-    }
-
-    public Employee updateSkillsetEmpId(Employee employee){
-        List<Skillset> sks = employee.getSkillset();
-        for(Skillset ss : sks){
-            ss.setEmployee(employee);
-        }
-        return employee;
     }
 }
