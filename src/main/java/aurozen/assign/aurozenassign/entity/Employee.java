@@ -63,6 +63,7 @@ public class Employee {
 
     public void setSkillset(List<Skillset> skillset) {
         this.skillset = skillset;
+        skillset.forEach(s -> s.setEmployee(this));
     }
 
 

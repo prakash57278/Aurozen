@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 //@RequestMapping("/api")
@@ -54,10 +55,11 @@ public class EmployeeController {
 
     }
 
-    @RequestMapping("/employee/{empid}")
+    @RequestMapping(value = "/employee/{empid}",produces = {"application/json"})
     @ResponseBody
-    public String getEmpById(@PathVariable("empid") int empid) {
-        return empRepo.findById(empid).toString();
+    public Optional<Employee> getEmpById(@PathVariable("empid") int empid) {
+
+        return empRepo.findById(empid);
     }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)

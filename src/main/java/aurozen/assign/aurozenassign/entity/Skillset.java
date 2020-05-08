@@ -48,7 +48,7 @@ public class Skillset {
         return "Skillset{" +
                 "skillid='" + skillid + '\'' +
                 ", skillname='" + skillname + '\'' +
-                ", employee=" + employee +
+//                ", employee=" + employee +
                 '}';
     }
 }
