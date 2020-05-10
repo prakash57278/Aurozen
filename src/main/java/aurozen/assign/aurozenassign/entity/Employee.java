@@ -12,7 +12,7 @@ public class Employee {
     private int empid;
 
     private String empname;
-    private String empcontact;
+    private Long empcontact;
     private String empemail;
     private String empphoto;
 
@@ -35,11 +35,11 @@ public class Employee {
         this.empname = empname;
     }
 
-    public String getEmpcontact() {
+    public Long getEmpcontact() {
         return empcontact;
     }
 
-    public void setEmpcontact(String empcontact) {
+    public void setEmpcontact(Long empcontact) {
         this.empcontact = empcontact;
     }
 

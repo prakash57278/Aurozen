@@ -20,7 +20,7 @@ public class MyUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 
-        Optional<Employee> emp =  employeeRepositry.findByEmpcontact(s);
+        Optional<Employee> emp =  employeeRepositry.findByEmpcontact(Long.valueOf(s));
 
         return emp.map(MyUserDetails::new).get() ;
     }
